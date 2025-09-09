@@ -27,7 +27,7 @@
             <Label
                 x:Name="PorcentagemGorjetalLabel"
                 Text="15%"/>
-            <Slider Maximum="100" Minimum="0"
+            <Slider Maximum="100" Minimum="0" Value="15"
                 x:Name="PorcentagemSlider"    
                 ValueChanged="PorcentagemSlider_ValueChanged"/>
             <Button
