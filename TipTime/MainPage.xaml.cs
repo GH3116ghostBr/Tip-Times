@@ -3,6 +3,10 @@
     public partial class MainPage : ContentPage
     {
         //int count = 0;
+        double porcentagem;
+        double valortotal;
+        double gorjeta;
+        double valorfinal;
 
         public MainPage()
         {
@@ -16,7 +20,8 @@
 
         private void ArredondaCimaBtn_Clicked(object sender, EventArgs e)
         {
-
+            valorfinal = Math.Ceiling(valorfinal);
+            ValorFinalLabel.Text = $"R$ {valorfinal}";
         }
 
         private void Porcentagem15Btn_Clicked(object sender, EventArgs e)
@@ -31,31 +36,33 @@
 
         private void ArredondaBaixoBtn_Clicked(object sender, EventArgs e)
         {
-
+            valorfinal = Math.Floor(valorfinal);
+            ValorFinalLabel.Text = $"R$ {valorfinal}";
+            
         }
 
         private void PorcentagemSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
             try 
             {
-                double porcentagem = PorcentagemSlider.Value;
+                porcentagem = PorcentagemSlider.Value;
                 PorcentagemGorjetalLabel.Text = $"{porcentagem}%";
                 //double gorjeta;
-                double valortotal = double.Parse(ValorTotalEntry.Text);
+                valortotal = double.Parse(ValorTotalEntry.Text);
                 //double valortotal = Convert.ToDouble(ValorTotalEntry.Text);
                 //Convert e uma classe
-                double gorjeta = valortotal * (porcentagem / 100);
-                double valorfinal = valortotal + gorjeta;
+                gorjeta = valortotal * (porcentagem / 100);
+                valorfinal = valortotal + gorjeta;
                 //estamos interpolando uma varíavel que tem conteudo numero em uma string
-                //ValorGorjetaLabel.Text = $"R$ {gorjeta}";
+                ValorGorjetaLabel.Text = $"R$ {gorjeta}";
                 //O recurso de cima não é muito bom
                 //O recurso debaixo é melhor porque o caracter c entre aspas determina a 
                 //correta moeda de acordo com as configuracoes do sistema operacional e 
                 //alem disso faz a aproximação sempre para duas casas decimais porque 
                 //sabe que estamos trabalhando valores monetarios
-                ValorGorjetaLabel.Text = Math.Floor(gorjeta.ToString("c"));
-                ValorFinalLabel.Text = Math.Ceiling(valorfinal.ToString("c");
-                //ValorFinalLabel.Text = $"R$ {valorfinal}";
+                //ValorGorjetaLabel.Text = Math.Floor(gorjeta.ToString("c"));
+                //ValorFinalLabel.Text = Math.Ceiling(valorfinal.ToString("c");
+                ValorFinalLabel.Text = $"R$ {valorfinal}";
             }
             catch (Exception ex)
             {
